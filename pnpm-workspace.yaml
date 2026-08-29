@@ -1,0 +1,6 @@
+# pnpm 11 asks before running a dependency's install scripts. These three are
+# the ones firebase and vite pull in, and they are needed for a clean build.
+allowBuilds:
+  '@firebase/util': true
+  esbuild: true
+  protobufjs: true

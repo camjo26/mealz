@@ -1,0 +1,38 @@
+// The Firestore security rule Mealz needs on the shared phil-mini-apps project.
+// This is a RECORD of the rule, for reference. The live version lives in the
+// Firebase console, which is the only place it takes effect.
+//
+// Deliberately NO real email addresses in this file. This repo is public, and
+// write access is granted by email: listing the family's actual addresses here
+// would publish the exact accounts an attacker would need to take over in order
+// to edit the plan. The real allowlist lives only in the console. Keep it that
+// way when adding Cam's brothers - edit it there, not here.
+//
+// To apply or change it: Firebase console -> Firestore Database -> Rules, and
+// edit the mealz block alongside the blocks already there. Do NOT paste this
+// file over the whole ruleset: the other family apps have their own blocks in
+// the same document, and replacing everything would switch them off.
+
+// Mealz: the family meal plan. Public read, so anyone can see what is for tea
+// without signing in. Only the listed family accounts may change it, and that
+// is enforced by Firestore itself, not just hidden in the UI.
+    match /mealz/{document} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.email.lower() in [
+          'first.family.member@example.com',
+          'second.family.member@example.com'
+        ];
+    }
+
+// Notes on the shape:
+//
+//   /mealz/{document}   covers both documents Mealz uses, `plan` and `shopping`.
+//   allow read: if true is intentional. The plan is not sensitive, and it means
+//     nobody has to sign in just to check what is for tea.
+//   .lower() matters: Firebase preserves the case a user typed at sign-up, so
+//     comparing without it would refuse a legitimate editor who typed a capital.
+//
+// If the plan will not load at all and the console shows permission-denied,
+// this block is missing or misspelled. If reading works but saving fails, the
+// signed-in address is simply not on the allowlist.
