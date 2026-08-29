@@ -28,6 +28,7 @@ import { buildStarterPlan } from './lib/seed'
 import { slotKey, type Plan, type Recipe, type ShoppingState } from './lib/types'
 
 const TABS = [
+  { id: 'today', label: 'Today' },
   { id: 'plan', label: 'Plan' },
   { id: 'recipes', label: 'Recipes' },
   { id: 'shopping', label: 'Shopping' },
@@ -44,7 +45,7 @@ export default function App() {
   const [authReady, setReady]   = useState(false)
   const [showSignIn, setSignIn] = useState(false)
 
-  const [tab, setTab]           = useState<TabId>('plan')
+  const [tab, setTab]           = useState<TabId>('today')
   const [weekIndex, setWeek]    = useState(0)
   const [recipes, setRecipes]   = useState<Recipe[]>([])
   const [loadingBox, setBox]    = useState(true)
@@ -151,7 +152,7 @@ export default function App() {
       </nav>
 
       <main>
-        {tab === 'plan' && (
+        {tab === 'today' && (
           <>
             <TodayCard
               plan={plan}
@@ -163,6 +164,24 @@ export default function App() {
                 setEditing({ weekIndex: week, day })
               }}
             />
+            {canEdit ? (
+              <p className="muted small footer-note">
+                Week 1 began Monday {plan.anchorMonday}, so this is week{' '}
+                {weekIndexFor(new Date(), plan.anchorMonday) + 1}. Out of step?{' '}
+                <button className="link" onClick={handleSwapWeeks} disabled={busy}>
+                  Swap which week is current
+                </button>
+              </p>
+            ) : (
+              <p className="muted small footer-note">
+                Sign in to change the plan. Anyone can look without signing in.
+              </p>
+            )}
+          </>
+        )}
+
+        {tab === 'plan' && (
+          <>
             {planIsEmpty && canEdit && (
               <div className="empty-state">
                 <p>The plan is empty. Start from the handwritten fortnight?</p>
@@ -180,14 +199,6 @@ export default function App() {
               onEditSlot={(week, day) => setEditing({ weekIndex: week, day })}
               onOpenRecipe={(recipe, serves) => setOpen({ recipe, serves })}
             />
-            {canEdit && (
-              <p className="muted small footer-note">
-                Week 1 began Monday {plan.anchorMonday}.{' '}
-                <button className="link" onClick={handleSwapWeeks} disabled={busy}>
-                  Swap which week is current
-                </button>
-              </p>
-            )}
             {!canEdit && authReady && (
               <p className="muted small footer-note">
                 Sign in to change the plan. Anyone can look without signing in.

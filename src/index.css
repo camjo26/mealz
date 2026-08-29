@@ -294,6 +294,16 @@ a {
   border-bottom-color: var(--brand);
 }
 
+/* Four tabs have to share a phone's width, and "Shopping" is the long one.
+   Shrink the type rather than let a label wrap or clip. */
+@media (max-width: 24rem) {
+  .main-tabs .tab {
+    font-size: 0.85rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+}
+
 .week-tabs {
   display: flex;
   gap: 0.5rem;

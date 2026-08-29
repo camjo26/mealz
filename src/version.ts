@@ -1,10 +1,18 @@
-export const VERSION = 'v0.04'
+export const VERSION = 'v0.05'
 
 export type ChangelogEntry = { version: string; date: string; notes: string[] }
 
 // Newest first. Bump VERSION and prepend an entry on EVERY publish, so the live
 // build always shows exactly what shipped. Dates are YYYY-MM-DD.
 export const CHANGELOG: ChangelogEntry[] = [
+  {
+    version: 'v0.05',
+    date: '2026-08-29',
+    notes: [
+      'Today is its own tab now, and the one the app opens on.',
+      'The week the rota is on can be corrected from there.',
+    ],
+  },
   {
     version: 'v0.04',
     date: '2026-08-29',
