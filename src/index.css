@@ -122,6 +122,153 @@ a {
 
 .ghost:hover { border-color: var(--brand); color: var(--brand); }
 
+/* ---------- Signed-in badge ---------- */
+
+.user-menu {
+  position: relative;
+}
+
+.avatar {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  border: 0;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  color: var(--brand-ink);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  display: grid;
+  place-items: center;
+}
+
+.avatar:hover { filter: brightness(1.07); }
+
+.user-popover {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  z-index: 15;
+  min-width: 12rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  box-shadow: var(--shadow);
+  padding: 0.6rem;
+}
+
+.user-email {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  word-break: break-all;
+}
+
+.user-popover button {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.7rem;
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.user-popover button:hover { border-color: var(--danger); }
+
+/* ---------- Today ---------- */
+
+.today-card {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  border-radius: var(--radius);
+  padding: 1.1rem 1rem 1rem;
+  margin-bottom: 1rem;
+  color: var(--brand-ink);
+  box-shadow: var(--shadow);
+}
+
+.today-question {
+  margin: 0;
+  font-size: clamp(1.35rem, 6.5vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.today-when {
+  margin: 0.5rem 0 0.7rem;
+  font-size: 0.9rem;
+  opacity: 0.95;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.today-week {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.today-meal {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.16);
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.6rem;
+  color: inherit;
+}
+
+.today-meal:hover:not(:disabled) { background: rgba(255, 255, 255, 0.24); }
+.today-meal:disabled { cursor: default; }
+
+.today-meal.empty {
+  display: block;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.today-meal.empty.static { margin: 0; }
+
+.today-photo {
+  width: 3.4rem;
+  height: 3.4rem;
+  flex: none;
+  border-radius: 0.6rem;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.today-photo.placeholder {
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+}
+
+.today-text { display: block; min-width: 0; }
+
+.today-title {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.today-sub {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 0.15rem;
+}
+
 /* ---------- Tabs ---------- */
 
 .tabs {

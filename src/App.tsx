@@ -7,6 +7,8 @@ import PlanBoard from './components/PlanBoard'
 import RecipeBrowser from './components/RecipeBrowser'
 import RecipeDetail from './components/RecipeDetail'
 import ShoppingBoard from './components/ShoppingBoard'
+import TodayCard from './components/TodayCard'
+import UserMenu from './components/UserMenu'
 import { DAYS_IN_WEEK, fromISODate, toISODate, weekIndexFor, type DayKey } from './lib/dates'
 import {
   clearHave,
@@ -126,9 +128,7 @@ export default function App() {
         </div>
         {authReady &&
           (user ? (
-            <button className="ghost" onClick={() => signOut(auth)}>
-              Sign out
-            </button>
+            <UserMenu user={user} onSignOut={() => signOut(auth)} />
           ) : (
             <button className="ghost" onClick={() => setSignIn(true)}>
               Sign in to edit
@@ -153,6 +153,16 @@ export default function App() {
       <main>
         {tab === 'plan' && (
           <>
+            <TodayCard
+              plan={plan}
+              recipes={recipes}
+              canEdit={canEdit}
+              onOpenRecipe={(recipe, serves) => setOpen({ recipe, serves })}
+              onEditToday={(week, day) => {
+                setWeek(week)
+                setEditing({ weekIndex: week, day })
+              }}
+            />
             {planIsEmpty && canEdit && (
               <div className="empty-state">
                 <p>The plan is empty. Start from the handwritten fortnight?</p>
