@@ -1,1 +1,167 @@
-Hi - Mealz app coming soon
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4511e">
+<title>MEALZ</title>
+<style>
+  :root {
+    --bg:        #fffaf5;
+    --card:      #ffffff;
+    --ink:       #2b1d16;
+    --ink-soft:  #7a6558;
+    --line:      #f0e2d6;
+    --brand:     #f4511e;
+    --brand-2:   #ff8f3c;
+    --ok:        #1e8e5a;
+    --ok-bg:     #e7f6ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:       #1a1310;
+      --card:     #241a15;
+      --ink:      #f6ece5;
+      --ink-soft: #b39c8d;
+      --line:     #3a2a22;
+      --ok:       #4ade80;
+      --ok-bg:    #14301f;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 1.25rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap { width: 100%; max-width: 30rem; }
+
+  .banner {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+    border-radius: 1.25rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0.75rem 2rem rgba(244, 81, 30, 0.28);
+  }
+  .banner .plate { font-size: 3rem; line-height: 1; }
+  .banner h1 {
+    margin: 0.5rem 0 0;
+    font-size: clamp(2.75rem, 14vw, 4rem);
+    letter-spacing: 0.12em;
+    font-weight: 800;
+  }
+  .banner p {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+    opacity: 0.95;
+  }
+
+  .card {
+    margin-top: 1rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    padding: 1.25rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--ok-bg);
+    color: var(--ok);
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  h2 {
+    margin: 0.9rem 0 0.25rem;
+    font-size: 1.15rem;
+  }
+  .lede { margin: 0 0 1rem; color: var(--ink-soft); }
+
+  ul { list-style: none; margin: 0; padding: 0; }
+  li {
+    display: flex;
+    gap: 0.7rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--line);
+  }
+  li .tick { color: var(--ok); font-weight: 700; }
+  li b { display: block; }
+  li span { color: var(--ink-soft); font-size: 0.9rem; }
+
+  footer {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="banner">
+      <div class="plate">🍽️</div>
+      <h1>MEALZ</h1>
+      <p>Cam's meal planning app</p>
+    </div>
+
+    <div class="card">
+      <span class="badge">✓ All set up</span>
+      <h2>The pipeline works</h2>
+      <p class="lede">
+        If you're reading this on the web, every piece of the setup is connected.
+      </p>
+
+      <ul>
+        <li>
+          <span class="tick">✓</span>
+          <div>
+            <b>GitHub account</b>
+            <span>camjo26 - Cam's own, separate from Dad's</span>
+          </div>
+        </li>
+        <li>
+          <span class="tick">✓</span>
+          <div>
+            <b>Repo connected</b>
+            <span>camjo26/mealz, pushed from this machine</span>
+          </div>
+        </li>
+        <li>
+          <span class="tick">✓</span>
+          <div>
+            <b>Live on GitHub Pages</b>
+            <span>camjo26.github.io/mealz</span>
+          </div>
+        </li>
+        <li>
+          <span class="tick">✓</span>
+          <div>
+            <b>Family keys ready</b>
+            <span>Claude and the shared database, for when we need them</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <footer>Next up: building the actual app.</footer>
+
+  </div>
+</body>
+</html>
