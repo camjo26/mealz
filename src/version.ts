@@ -1,10 +1,18 @@
-export const VERSION = 'v0.01'
+export const VERSION = 'v0.02'
 
 export type ChangelogEntry = { version: string; date: string; notes: string[] }
 
 // Newest first. Bump VERSION and prepend an entry on EVERY publish, so the live
 // build always shows exactly what shipped. Dates are YYYY-MM-DD.
 export const CHANGELOG: ChangelogEntry[] = [
+  {
+    version: 'v0.02',
+    date: '2026-08-29',
+    notes: [
+      'Fixed a byte-order mark corrupting every Firebase setting on Vercel,',
+      'which left the live app stuck on "Loading the Recipe Box...".',
+    ],
+  },
   {
     version: 'v0.01',
     date: '2026-08-29',
