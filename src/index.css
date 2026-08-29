@@ -43,6 +43,15 @@ body {
   min-height: 100%;
 }
 
+html {
+  /* Always reserve room for the scrollbar. The shell is centred with margin
+     auto, so without this the whole app jumps sideways by the scrollbar's width
+     whenever a tab happens to be short enough not to scroll - switching between
+     a long Plan and a short Shopping list made the page visibly twitch. On
+     platforms with overlay scrollbars (phones, macOS) this changes nothing. */
+  scrollbar-gutter: stable;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
