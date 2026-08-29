@@ -9,7 +9,7 @@ import RecipeDetail from './components/RecipeDetail'
 import ShoppingBoard from './components/ShoppingBoard'
 import TodayCard from './components/TodayCard'
 import UserMenu from './components/UserMenu'
-import { DAYS_IN_WEEK, fromISODate, toISODate, weekIndexFor, type DayKey } from './lib/dates'
+import { fromISODate, mondayOf, toISODate, weekIndexFor, type DayKey } from './lib/dates'
 import {
   clearHave,
   clearMeal,
@@ -108,12 +108,13 @@ export default function App() {
     await guard(() => saveWholePlan(buildStarterPlan(recipes), editor))
   }
 
-  // Nudging the anchor on by a week swaps which of the two weeks counts as the
-  // current one, for when the rota drifts out of step with real life.
-  async function handleSwapWeeks() {
-    const shifted = fromISODate(plan.anchorMonday)
-    shifted.setDate(shifted.getDate() + DAYS_IN_WEEK)
-    await guard(() => setAnchorMonday(toISODate(shifted), editor))
+  // Which Monday week 1 begins on. Everything else about the rota follows from
+  // it, so it is set directly rather than nudged: any date is accepted and
+  // snapped back to its own Monday, because a rota week cannot start midweek.
+  async function handleSetAnchor(isoDate: string) {
+    if (!isoDate) return
+    const monday = toISODate(mondayOf(fromISODate(isoDate)))
+    await guard(() => setAnchorMonday(monday, editor))
   }
 
   const editingMeal = editing ? plan.slots[slotKey(editing.weekIndex, editing.day)] : undefined
@@ -165,13 +166,21 @@ export default function App() {
               }}
             />
             {canEdit ? (
-              <p className="muted small footer-note">
-                Week 1 began Monday {plan.anchorMonday}, so this is week{' '}
-                {weekIndexFor(new Date(), plan.anchorMonday) + 1}. Out of step?{' '}
-                <button className="link" onClick={handleSwapWeeks} disabled={busy}>
-                  Swap which week is current
-                </button>
-              </p>
+              <div className="anchor-row">
+                <label className="field">
+                  <span>Week 1 starts on</span>
+                  <input
+                    type="date"
+                    value={plan.anchorMonday}
+                    disabled={busy}
+                    onChange={(event) => void handleSetAnchor(event.target.value)}
+                  />
+                </label>
+                <p className="muted small">
+                  That makes today <b>week {weekIndexFor(new Date(), plan.anchorMonday) + 1}</b>.
+                  Pick any day and it snaps to that week&rsquo;s Monday. Everyone sees this.
+                </p>
+              </div>
             ) : (
               <p className="muted small footer-note">
                 Sign in to change the plan. Anyone can look without signing in.

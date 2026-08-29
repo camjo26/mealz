@@ -31,7 +31,9 @@ export default function TodayCard({ plan, recipes, canEdit, onOpenRecipe, onEdit
 
   return (
     <section className="today-card">
-      <h2 className="today-question">What mealz are we cooking today?</h2>
+      <h2 className="today-question">
+        What <span className="today-word">mealz</span> are we cooking today?
+      </h2>
 
       <p className="today-when">
         {DAY_NAMES[day]} {dateLabel} <span className="today-week">week {weekIndex + 1}</span>
