@@ -9,6 +9,7 @@ import {
   type DayKey,
 } from '../lib/dates'
 import { recipeBoxUrl } from '../lib/recipeBox'
+import RecipeBoxIcon from './RecipeBoxIcon'
 import { slotKey, type Meal, type Plan, type Recipe } from '../lib/types'
 
 type Props = {
@@ -135,7 +136,7 @@ function MealRow({ meal, recipe, canEdit, onOpenRecipe, onEdit }: MealRowProps) 
           title="Cook this in the Recipe Box"
           aria-label={`Cook ${meal.title} in the Recipe Box`}
         >
-          ⏲
+          <RecipeBoxIcon />
         </a>
       )}
 

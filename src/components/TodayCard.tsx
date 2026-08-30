@@ -8,6 +8,7 @@ import {
   type DayKey,
 } from '../lib/dates'
 import { recipeBoxUrl } from '../lib/recipeBox'
+import RecipeBoxIcon from './RecipeBoxIcon'
 import { slotKey, type Plan, type Recipe } from '../lib/types'
 
 type Props = {
@@ -78,7 +79,8 @@ export default function TodayCard({ plan, recipes, canEdit, onOpenRecipe, onEdit
           target="_blank"
           rel="noreferrer"
         >
-          ⏲ Cook it in the Recipe Box
+          <RecipeBoxIcon />
+          Cook it in the Recipe Box
         </a>
       )}
     </section>

@@ -14,6 +14,9 @@
   --brand-ink: #ffffff;
   --ok:        #1e8e5a;
   --ok-bg:     #e7f6ee;
+  /* The Recipe Box's own green (its --green / theme-color), so links into that
+     app carry its colour rather than ours. */
+  --recipe-box: #2d4a3e;
   --danger:    #c0392b;
   --shadow:    0 0.5rem 1.5rem rgba(120, 70, 40, 0.1);
   --radius:    0.9rem;
@@ -28,6 +31,9 @@
     --line:     #3a2a22;
     --ok:       #4ade80;
     --ok-bg:    #14301f;
+    /* #2d4a3e is near-black against the dark card, so lift it just enough to
+       stay legible while still reading as the Recipe Box green. */
+    --recipe-box: #8fc4ac;
     --danger:   #f87171;
     --shadow:   0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
   }
@@ -479,30 +485,45 @@ a {
   width: 2.2rem;
   border: 1px solid var(--line);
   border-radius: 0.6rem;
-  color: var(--ink-soft);
+  color: var(--recipe-box);
   text-decoration: none;
   font-size: 0.95rem;
 }
 
-.meal-cook:hover { border-color: var(--brand); color: var(--brand); }
+.meal-cook:hover { border-color: var(--recipe-box); }
+
+/* The Recipe Box place setting. Sized in em so it tracks whatever text it sits
+   beside, and inheriting currentColor so it works on pale and orange alike. */
+.rb-icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+}
+
+.meal-cook .rb-icon { width: 1.2rem; height: 1.2rem; }
 
 /* The same link given room to explain itself, on the recipe panel. */
 .cook-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 0.7rem;
   padding: 0.6rem 0.8rem;
-  color: var(--brand);
+  color: var(--recipe-box);
   font-weight: 700;
   text-decoration: none;
   text-align: center;
 }
 
-.cook-link:hover { border-color: var(--brand); }
+.cook-link:hover { border-color: var(--recipe-box); }
 
+/* Full-width so it drops to its own line under the icon and label. */
 .cook-link-sub {
-  display: block;
+  flex-basis: 100%;
   font-weight: 400;
   font-size: 0.78rem;
   color: var(--ink-soft);
