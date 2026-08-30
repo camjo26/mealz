@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { recipeBoxUrl } from '../lib/recipeBox'
 import { ingredientKey, scaleQuantity } from '../lib/shopping'
 import type { Ingredient, Recipe } from '../lib/types'
 
@@ -51,6 +52,18 @@ export default function RecipeDetail({ recipe, serves, have, onToggleHave, onClo
           {recipe.cook && <span>Cook {recipe.cook}</span>}
           {recipe.cuisine && <span>{recipe.cuisine}</span>}
         </p>
+
+        <a
+          className="cook-link"
+          href={recipeBoxUrl(recipe.id, shown || null)}
+          target="_blank"
+          rel="noreferrer"
+        >
+          ⏲ Cook this in the Recipe Box
+          <span className="cook-link-sub">
+            Opens scaled for {shown || recipe.serves}, with the timers
+          </span>
+        </a>
 
         <div className="tabs" role="tablist">
           <button

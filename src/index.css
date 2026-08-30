@@ -470,6 +470,57 @@ a {
 
 .meal-edit:hover { border-color: var(--brand); color: var(--brand); }
 
+/* Jump straight to the Recipe Box, which has the cooking timers. Same footprint
+   as the edit button so a row with both still reads as two neat controls. */
+.meal-cook {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.meal-cook:hover { border-color: var(--brand); color: var(--brand); }
+
+/* The same link given room to explain itself, on the recipe panel. */
+.cook-link {
+  display: block;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  color: var(--brand);
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+}
+
+.cook-link:hover { border-color: var(--brand); }
+
+.cook-link-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 0.1rem;
+}
+
+/* On the orange card the same control has to sit on the brand colour instead. */
+.cook-link.on-brand {
+  margin-top: 0.6rem;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: transparent;
+  color: var(--brand-ink);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.8rem;
+}
+
+.cook-link.on-brand:hover { background: rgba(255, 255, 255, 0.26); }
+
 /* ---------- Recipes ---------- */
 
 .search {

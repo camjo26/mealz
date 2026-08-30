@@ -8,6 +8,7 @@ import {
   weekIndexFor,
   type DayKey,
 } from '../lib/dates'
+import { recipeBoxUrl } from '../lib/recipeBox'
 import { slotKey, type Meal, type Plan, type Recipe } from '../lib/types'
 
 type Props = {
@@ -124,6 +125,19 @@ function MealRow({ meal, recipe, canEdit, onOpenRecipe, onEdit }: MealRowProps) 
           </span>
         </span>
       </button>
+
+      {recipe && (
+        <a
+          className="meal-cook"
+          href={recipeBoxUrl(recipe.id, meal.serves || recipe.serves || null)}
+          target="_blank"
+          rel="noreferrer"
+          title="Cook this in the Recipe Box"
+          aria-label={`Cook ${meal.title} in the Recipe Box`}
+        >
+          ⏲
+        </a>
+      )}
 
       {canEdit && (
         <button className="meal-edit" onClick={onEdit} aria-label="Change this meal">

@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
+import { RECIPE_BOX_URL } from '../lib/recipeBox'
 import type { Recipe } from '../lib/types'
-
-const RECIPE_BOX_URL = 'https://my-recipes-rho-rosy.vercel.app/'
 
 type Props = {
   recipes: Recipe[]

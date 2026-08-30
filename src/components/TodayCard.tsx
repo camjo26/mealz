@@ -7,6 +7,7 @@ import {
   weekIndexFor,
   type DayKey,
 } from '../lib/dates'
+import { recipeBoxUrl } from '../lib/recipeBox'
 import { slotKey, type Plan, type Recipe } from '../lib/types'
 
 type Props = {
@@ -66,6 +67,19 @@ export default function TodayCard({ plan, recipes, canEdit, onOpenRecipe, onEdit
         </button>
       ) : (
         <p className="today-meal empty static">Nothing planned for today yet.</p>
+      )}
+
+      {/* Straight to the app with the timers, already scaled for the day's
+          servings, without opening the recipe here first. */}
+      {recipe && (
+        <a
+          className="cook-link on-brand"
+          href={recipeBoxUrl(recipe.id, meal?.serves || recipe.serves || null)}
+          target="_blank"
+          rel="noreferrer"
+        >
+          ⏲ Cook it in the Recipe Box
+        </a>
       )}
     </section>
   )
