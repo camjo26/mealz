@@ -14,9 +14,9 @@
   --brand-ink: #ffffff;
   --ok:        #1e8e5a;
   --ok-bg:     #e7f6ee;
-  /* The Recipe Box's own green (its --green / theme-color), so links into that
-     app carry its colour rather than ours. */
-  --recipe-box: #2d4a3e;
+  /* The green of the Recipe Box place-setting artwork, so the label matches the
+     icon beside it exactly rather than sitting a shade off. */
+  --recipe-box: #27692a;
   --danger:    #c0392b;
   --shadow:    0 0.5rem 1.5rem rgba(120, 70, 40, 0.1);
   --radius:    0.9rem;
@@ -31,9 +31,9 @@
     --line:     #3a2a22;
     --ok:       #4ade80;
     --ok-bg:    #14301f;
-    /* #2d4a3e is near-black against the dark card, so lift it just enough to
-       stay legible while still reading as the Recipe Box green. */
-    --recipe-box: #8fc4ac;
+    /* The same green after the lift the icon gets in dark mode
+       (brightness 1.55, saturate 0.85), so label and artwork still agree. */
+    --recipe-box: #479e4b;
     --danger:   #f87171;
     --shadow:   0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
   }
@@ -493,14 +493,36 @@ a {
 .meal-cook:hover { border-color: var(--recipe-box); }
 
 /* The Recipe Box place setting. Sized in em so it tracks whatever text it sits
-   beside, and inheriting currentColor so it works on pale and orange alike. */
+   beside. It is a fixed-colour image, so where the background is too dark or
+   too saturated for its green, it is flipped to white below. */
 .rb-icon {
-  width: 1.25em;
-  height: 1.25em;
+  width: 1.35em;
+  height: 1.35em;
   flex: none;
+  object-fit: contain;
 }
 
-.meal-cook .rb-icon { width: 1.2rem; height: 1.2rem; }
+.meal-cook .rb-icon { width: 1.35rem; height: 1.35rem; }
+
+/* Dark mode: the artwork's green is nearly lost against the near-black cards,
+   so lighten it rather than leave a dim smudge. The Today card is deliberately
+   excluded - it is the brand orange in both themes, and the green reads fine
+   on it, so it should not follow the light/dark switch at all. */
+@media (prefers-color-scheme: dark) {
+  .meal-cook .rb-icon,
+  .cook-link:not(.on-brand) .rb-icon {
+    filter: brightness(1.55) saturate(0.85);
+  }
+}
+
+/* The one place the green cannot go. The Today card is the brand orange in both
+   themes, and the artwork's green only reaches 1.9:1 against it - under the 3:1
+   a graphic needs to stay legible - where white reaches 3.5:1. If a browser
+   ignored the filter it would simply stay green, which is dim rather than
+   invisible. */
+.cook-link.on-brand .rb-icon {
+  filter: brightness(0) invert(1);
+}
 
 /* The same link given room to explain itself, on the recipe panel. */
 .cook-link {

@@ -1,10 +1,17 @@
-export const VERSION = 'v0.08'
+export const VERSION = 'v0.09'
 
 export type ChangelogEntry = { version: string; date: string; notes: string[] }
 
 // Newest first. Bump VERSION and prepend an entry on EVERY publish, so the live
 // build always shows exactly what shipped. Dates are YYYY-MM-DD.
 export const CHANGELOG: ChangelogEntry[] = [
+  {
+    version: 'v0.09',
+    date: '2026-08-30',
+    notes: [
+      'The Recipe Box buttons now use the real place-setting artwork.',
+    ],
+  },
   {
     version: 'v0.08',
     date: '2026-08-30',
