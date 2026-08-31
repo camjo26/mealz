@@ -465,16 +465,18 @@ a {
   font-size: 0.8rem;
 }
 
+/* Brand orange rather than the muted ink: sitting next to the Recipe Box green,
+   a grey pencil read as disabled rather than as the other action on the row. */
 .meal-edit {
   flex: none;
   background: none;
   border: 1px solid var(--line);
   border-radius: 0.6rem;
   width: 2.2rem;
-  color: var(--ink-soft);
+  color: var(--brand);
 }
 
-.meal-edit:hover { border-color: var(--brand); color: var(--brand); }
+.meal-edit:hover { border-color: var(--brand); }
 
 /* Jump straight to the Recipe Box, which has the cooking timers. Same footprint
    as the edit button so a row with both still reads as two neat controls. */
